@@ -37,8 +37,6 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 #load aliases
 test -f "$XDG_CONFIG_HOME"/aliasrc && source "$XDG_CONFIG_HOME"/aliasrc
 
-test -f $HOME/.xprofile && . $HOME/.xprofile && echo "keyboard setup done"
-
 
 #testing functions
 ker() {

@@ -37,7 +37,10 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 #load aliases
 test -f "$XDG_CONFIG_HOME"/aliasrc && source "$XDG_CONFIG_HOME"/aliasrc
 
-[ -f ~/.xprofile ] && source ~/.xprofile
+#for remapping caps to control and esc and forcing keyboard language to swedish
+setxkbmap -layout se
+setxkbmap -option ctrl:nocaps
+xcape -e 'Control_L=Escape'
 #testing functions
 ker() {
 	kubectl explain "$1" --recursive | less

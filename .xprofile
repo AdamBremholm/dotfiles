@@ -1,0 +1,5 @@
+#for remapping caps to control and esc and forcing keyboard language to swedish
+setxkbmap -layout se && \
+setxkbmap -option ctrl:nocaps && \
+xcape -e 'Control_L=Escape' && \
+xset r rate 190 35

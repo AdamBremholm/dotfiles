@@ -37,7 +37,8 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 #load aliases
 test -f "$XDG_CONFIG_HOME"/aliasrc && source "$XDG_CONFIG_HOME"/aliasrc
 
-
+#run .xinitrc
+test -f "$HOME"/.xinitrc && . "$HOME"/.xinitrc
 #testing functions
 ker() {
 	kubectl explain "$1" --recursive | less

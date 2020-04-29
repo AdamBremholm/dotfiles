@@ -7,6 +7,9 @@
 " \ **************************************************************************************** \
 " \ Idea actions
 " \ **************************************************************************************** \
+
+let mapleader = ","
+inoremap jk <Esc> 
 noremap <leader>d           :action GotoDeclaration<cr>
 noremap gf                  :action GotoFile<cr>
 noremap <leader>c           :action GotoClass<cr>

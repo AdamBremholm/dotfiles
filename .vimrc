@@ -80,7 +80,9 @@ colorscheme molokai
 " Your own mappings
 
 " For Fast action mode 
-inoremap jk <ESC>
+" inoremap jk <ESC>
+" Disable search highlighting on esc
+nnoremap <esc> :noh<return><esc>
 " For not opening new line with o O
 "nnoremap o o<Esc>
 "nnoremap O O<Esc>
@@ -88,7 +90,6 @@ inoremap jk <ESC>
 " falith mappings
 " Set leader shortcut to a comma ','. By default it's the backslash
 let mapleader = ","
-
 " Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
 " quickfix window with <leader>a
 map <C-n> :cnext<CR>

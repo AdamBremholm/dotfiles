@@ -7,7 +7,7 @@
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
-export PATH="${PATH}:~/.cargo/bin"
+#export PATH="${PATH}:~/.cargo/bin"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
@@ -39,9 +39,12 @@ test -f "$XDG_CONFIG_HOME"/aliasrc && source "$XDG_CONFIG_HOME"/aliasrc
 
 #run .xinitrc
 test -f "$HOME"/.xinitrc && . "$HOME"/.xinitrc
-#testing functions
-ker() {
-	kubectl explain "$1" --recursive | less
 
+#powerline
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+. /usr/share/powerline/bindings/bash/powerline.sh
 
-}
+#Starship
+eval "$(starship init bash)"

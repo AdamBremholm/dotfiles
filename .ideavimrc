@@ -9,7 +9,15 @@
 " \ **************************************************************************************** \
 
 let mapleader = ","
-inoremap jk <Esc> 
+
+" Enable to copy to clipboard for operations like yank, delete, change and put
+" http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
+if has('unnamedplus')
+  set clipboard^=unnamed
+  set clipboard^=unnamedplus
+endif
+
+noremap <leader>n           :action NewFile
 noremap <leader>d           :action GotoDeclaration<cr>
 noremap gf                  :action GotoFile<cr>
 noremap <leader>c           :action GotoClass<cr>

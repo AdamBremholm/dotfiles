@@ -79,13 +79,6 @@ colorscheme molokai
 """"""""""""""""""""""
 " Your own mappings
 
-" For Fast action mode 
-" inoremap jk <ESC>
-" Disable search highlighting on esc
-nnoremap <esc> :noh<return><esc>
-" For not opening new line with o O
-"nnoremap o o<Esc>
-"nnoremap O O<Esc>
 """"""""""""""""""""""
 " falith mappings
 " Set leader shortcut to a comma ','. By default it's the backslash

@@ -17,6 +17,7 @@ if has('unnamedplus')
   set clipboard^=unnamedplus
 endif
 
+noremap <leader>rp          :action Replace
 noremap <leader>n           :action NewFile
 noremap <leader>d           :action GotoDeclaration<cr>
 noremap gf                  :action GotoFile<cr>

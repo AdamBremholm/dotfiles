@@ -40,5 +40,5 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 # :# Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! ps -e | grep -qw Xorg && exec startx
 
-# Switch escape and caps if tty and no passwd required:
-sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
+setxkbmap -option 'caps:ctrl_modifier' # makes Caps another Ctrl
+xcape -e 'Caps_Lock=Escape' # Caps is Esc when pressed by itself

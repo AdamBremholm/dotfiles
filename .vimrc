@@ -7,6 +7,7 @@
 " throughout years. Keep it clean and useful - Fatih Arslan
 
 call plug#begin()
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree'
@@ -102,8 +103,6 @@ autocmd BufEnter * silent! lcd %:p:h
 
 "omnisharp stuff
 nnoremap <C-o> :NERDTreeToggle<CR>
-inoremap <expr> <Tab> pumvisible() ? '<C-n>' :                                                      
-\ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
 
 nnoremap <C-o><C-u> :OmniSharpFindUsages<CR>
 nnoremap <C-o><C-d> :OmniSharpGotoDefinition<CR>

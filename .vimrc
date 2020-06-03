@@ -7,11 +7,11 @@
 " throughout years. Keep it clean and useful - Fatih Arslan
 
 call plug#begin()
-Plug 'fatih/vim-go'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'w0rp/ale'
+Plug 'scrooloose/nerdtree'
 Plug 'fatih/molokai'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
@@ -80,14 +80,8 @@ colorscheme molokai
 " Your own mappings
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 """"""""""""""""""""""
-" falith mappings
 " Set leader shortcut to a comma ','. By default it's the backslash
 let mapleader = ","
-" Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
-" quickfix window with <leader>a
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
 
 " Visual linewise up and down by default (and use gj gk to go quicker)
 noremap <Up> gk
@@ -106,73 +100,30 @@ nnoremap Y y$
 " Enter automatically into the files directory
 autocmd BufEnter * silent! lcd %:p:h
 
+"omnisharp stuff
+nnoremap <C-o> :NERDTreeToggle<CR>
+inoremap <expr> <Tab> pumvisible() ? '<C-n>' :                                                      
+\ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
 
+nnoremap <C-o><C-u> :OmniSharpFindUsages<CR>
+nnoremap <C-o><C-d> :OmniSharpGotoDefinition<CR>
+nnoremap <C-o><C-d><C-p> :OmniSharpPreviewDefinition<CR>
+nnoremap <leader>rr :!dotnet run
 """""""""""""""""""""
 "      Plugins      "
 """""""""""""""""""""
 
-" vim-go
-let g:go_fmt_command = "goimports"
-let g:go_autodetect_gopath = 1
-let g:go_list_type = "quickfix"
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_generate_tags = 1
+".net
+let g:OmniSharp_want_snippet=1
 
-" Open :GoDeclsDir with ctrl-g
-nmap <C-g> :GoDeclsDir<cr>
-imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
+let g:OmniSharp_server_stdio = 1
 
+let g:OmniSharp_selector_ui = 'ctrlp'
 
-augroup go
-  autocmd!
+let g:ale_linters = { 'cs': ['OmniSharp'] }
 
-  " Show by default 4 spaces for a tab
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+let g:ale_set_loclist = 0
 
-  " :GoBuild and :GoTestCompile
-  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+let g:ale_set_quickfix = 1
 
-  " :GoTest
-  autocmd FileType go nmap <leader>t  <Plug>(go-test)
-
-  " :GoRun
-  autocmd FileType go nmap <leader>r  <Plug>(go-run)
-
-  " :GoDoc
-  autocmd FileType go nmap <Leader>d <Plug>(go-doc)
-
-  " :GoCoverageToggle
-  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
-
-  " :GoInfo
-  autocmd FileType go nmap <Leader>i <Plug>(go-info)
-
-  " :GoMetaLinter
-  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
-
-  " :GoDef but opens in a vertical split
-  autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
-  " :GoDef but opens in a horizontal split
-  autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
-
-  " :GoAlternate  commands :A, :AV, :AS and :AT
-  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-augroup END
-
-" build_go_files is a custom function that builds or compiles the test file.
-" It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
+let g:ale_list_window_size = 5

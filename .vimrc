@@ -1,11 +1,3 @@
-" A sensible vimrc for Go development
-"
-" Please note that the following settings are some default that I used
-" for years. However it might be not the case for you (and your
-" environment). I highly encourage to change/adapt the vimrc to your own
-" needs. Think of a vimrc as a garden that needs to be maintained and fostered
-" throughout years. Keep it clean and useful - Fatih Arslan
-
 call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'OmniSharp/omnisharp-vim'
@@ -54,7 +46,7 @@ set pumheight=10                " Completion window max size
 set nocursorcolumn              " Do not highlight column (speeds up highlighting)
 set nocursorline                " Do not highlight cursor (speeds up highlighting)
 set lazyredraw                  " Wait to redraw
-
+set relativenumber
 " Enable to copy to clipboard for operations like yank, delete, change and put
 " http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
 if has('unnamedplus')
@@ -103,7 +95,6 @@ autocmd BufEnter * silent! lcd %:p:h
 
 "omnisharp stuff
 nnoremap <C-o> :NERDTreeToggle<CR>
-
 nnoremap <C-o><C-u> :OmniSharpFindUsages<CR>
 nnoremap <C-o><C-d> :OmniSharpGotoDefinition<CR>
 nnoremap <C-o><C-d><C-p> :OmniSharpPreviewDefinition<CR>

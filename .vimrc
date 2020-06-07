@@ -67,6 +67,8 @@ let g:rehash256 = 1
 let g:molokai_original = 1
 colorscheme molokai
 
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+$/
 """"""""""""""""""""""
 "      Mappings      "
 """"""""""""""""""""""
@@ -81,6 +83,12 @@ noremap <Up> gk
 noremap <Down> gj
 noremap j gj
 noremap k gk
+
+" Shortcutting split navigation, saving a keypress:
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.

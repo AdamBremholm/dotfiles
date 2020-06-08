@@ -48,6 +48,7 @@ set nocursorcolumn              " Do not highlight column (speeds up highlightin
 set nocursorline                " Do not highlight cursor (speeds up highlighting)
 set lazyredraw                  " Wait to redraw
 set relativenumber
+
 " Enable to copy to clipboard for operations like yank, delete, change and put
 " http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
 if has('unnamedplus')
@@ -111,26 +112,13 @@ autocmd BufEnter * silent! lcd %:p:h
 """""""""""""""""""""
 "      Plugins      "
 """""""""""""""""""""
-" Global Plugin Config
-noremap <leader>f :Autoformat<CR>
-noremap <leader>nf :NERDTreeFind<CR>
-noremap <leader>nt :NERDTreeToggle<CR>
-noremap <leader>l :CtrlP<CR>
-noremap <leader>b :CtrlPBuffer<CR>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-t> :tabnew<CR>
-nnoremap <C-c> :tabclose<CR>
-tnoremap <C-tab>  <C-\><C-N>:tabnext<CR>
-tnoremap <C-S-tab> <C-\><C-N>:tabprevious<CR>
-tnoremap <C-t> <C-\><C-N>:tabnew<CR>
 
 "omnisharp stuff
-"nnoremap <C-o> :NERDTreeToggle<CR>
-"nnoremap <C-o><C-u> :OmniSharpFindUsages<CR>
-"nnoremap <C-o><C-d> :OmniSharpGotoDefinition<CR>
-"nnoremap <C-o><C-d><C-p> :OmniSharpPreviewDefinition<CR>
-"nnoremap <leader>rr :!dotnet run
+nnoremap <C-o> :NERDTreeToggle<CR>
+nnoremap <C-o><C-u> :OmniSharpFindUsages<CR>
+nnoremap <C-o><C-d> :OmniSharpGotoDefinition<CR>
+nnoremap <C-o><C-d><C-p> :OmniSharpPreviewDefinition<CR>
+nnoremap <leader>rr :!dotnet run
 
 ".net
 let g:OmniSharp_want_snippet=1

@@ -5,6 +5,7 @@ Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree'
 Plug 'fatih/molokai'
 Plug 'SirVer/ultisnips'
+Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
@@ -60,6 +61,12 @@ if has('persistent_undo')
   set undodir=~/.config/vim/tmp/undo//
 endif
 
+" NERD Tree Settings
+let NERDTreeShowHidden=1
+let g:NERDTreeWinSize = 40
+" Ignore C# build folders
+let NERDTreeIgnore=['bin$[[dir]]', 'obj$[[dir]]', '\.vs$[[dir]]', '\~$']
+
 " Colorscheme
 syntax enable
 set t_Co=256
@@ -101,15 +108,29 @@ nnoremap Y y$
 " Enter automatically into the files directory
 autocmd BufEnter * silent! lcd %:p:h
 
-"omnisharp stuff
-nnoremap <C-o> :NERDTreeToggle<CR>
-nnoremap <C-o><C-u> :OmniSharpFindUsages<CR>
-nnoremap <C-o><C-d> :OmniSharpGotoDefinition<CR>
-nnoremap <C-o><C-d><C-p> :OmniSharpPreviewDefinition<CR>
-nnoremap <leader>rr :!dotnet run
 """""""""""""""""""""
 "      Plugins      "
 """""""""""""""""""""
+" Global Plugin Config
+noremap <leader>f :Autoformat<CR>
+noremap <leader>nf :NERDTreeFind<CR>
+noremap <leader>nt :NERDTreeToggle<CR>
+noremap <leader>l :CtrlP<CR>
+noremap <leader>b :CtrlPBuffer<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-t> :tabnew<CR>
+nnoremap <C-c> :tabclose<CR>
+tnoremap <C-tab>  <C-\><C-N>:tabnext<CR>
+tnoremap <C-S-tab> <C-\><C-N>:tabprevious<CR>
+tnoremap <C-t> <C-\><C-N>:tabnew<CR>
+
+"omnisharp stuff
+"nnoremap <C-o> :NERDTreeToggle<CR>
+"nnoremap <C-o><C-u> :OmniSharpFindUsages<CR>
+"nnoremap <C-o><C-d> :OmniSharpGotoDefinition<CR>
+"nnoremap <C-o><C-d><C-p> :OmniSharpPreviewDefinition<CR>
+"nnoremap <leader>rr :!dotnet run
 
 ".net
 let g:OmniSharp_want_snippet=1

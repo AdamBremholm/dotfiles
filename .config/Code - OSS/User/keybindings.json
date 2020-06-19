@@ -50,16 +50,6 @@
 "when": "listFocus && !inputFocus"
 },
 {
-"key": "cmd+enter",
-"command": "renameFile",
-"when": "explorerViewletVisible && filesExplorerFocus"
-},
-{
-"key": "enter",
-"command": "-renameFile",
-"when": "explorerViewletVisible && filesExplorerFocus"
-},
-{
 "key": "enter",
 "command": "list.select",
 "when": "listFocus && !inputFocus"
@@ -84,14 +74,11 @@
 "command": "workbench.action.quickOpenSelectPrevious",
 "when": "inQuickOpen"
 },
+// [Semicolon] = ö on Swedish keyboard
 {
-    "key": "ctrl+shift+[Equal]",
-    "command": "workbench.action.terminal.toggleTerminal",
-    "when": "terminalIsOpen"
-},
-{
-    "key": "ctrl+shift+[Equal]",
-    "command": "-workbench.action.terminal.toggleTerminal"
+    "key": "ctrl+[Semicolon]",
+    "command": "workbench.action.terminal.new",
+    "when": "!terminalIsOpen"
 },
 {
     "key": "ctrl+[Semicolon]",
@@ -102,5 +89,14 @@
     "key": "ctrl+[Semicolon]",
     "command": "workbench.action.terminal.focus"
 },
-{ "key": "ctrl+[Semicolon]", "command": "workbench.action.focusActiveEditorGroup", "when": "terminalFocus"}
+{
+    "key": "ctrl+[Semicolon]",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+},
+// [Quote] = ä on Swedish keyboard
+{
+    "key": "ctrl+[Quote]",
+    "command": "workbench.action.closePanel"
+}
 ]

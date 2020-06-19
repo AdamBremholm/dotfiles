@@ -98,5 +98,5 @@
 {
     "key": "ctrl+[Quote]",
     "command": "workbench.action.closePanel"
-}
+},
 ]

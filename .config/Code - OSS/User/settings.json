@@ -67,6 +67,12 @@
             "commands": [
                 "workbench.action.quickOpen"
             ]
+        },
+        {
+            "before": ["<leader>", "r", "r"],
+            "commands": [
+                ":!dotnet run"
+            ]
         }
     ],
 
@@ -79,5 +85,7 @@
             ],
         }
     ],
-    "window.zoomLevel": 1
+    "window.zoomLevel": 1,
+    "explorer.confirmDelete": false,
+    "workbench.startupEditor": "newUntitledFile"
 }

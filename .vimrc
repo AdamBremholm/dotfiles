@@ -2,6 +2,7 @@ call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'w0rp/ale'
+Plug 'embear/vim-uncrustify'
 Plug 'scrooloose/nerdtree'
 Plug 'fatih/molokai'
 Plug 'SirVer/ultisnips'
@@ -109,28 +110,33 @@ nnoremap Y y$
 " Enter automatically into the files directory
 autocmd BufEnter * silent! lcd %:p:h
 
+" Auto enclosing brackets
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 """""""""""""""""""""
 "      Plugins      "
 """""""""""""""""""""
 
 "omnisharp stuff
-nnoremap <C-o> :NERDTreeToggle<CR>
-nnoremap <C-o><C-u> :OmniSharpFindUsages<CR>
-nnoremap <C-o><C-d> :OmniSharpGotoDefinition<CR>
-nnoremap <C-o><C-d><C-p> :OmniSharpPreviewDefinition<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>d :OmniSharpDocumentation<CR>
+nnoremap <leader>fu :OmniSharpFindUsages<CR>
+nnoremap <leader>gd :OmniSharpGotoDefinition<CR>
+nnoremap <leader>pd :OmniSharpPreviewDefinition<CR>
 nnoremap <leader>rr :!dotnet run
 
 ".net
 let g:OmniSharp_want_snippet=1
-
 let g:OmniSharp_server_stdio = 1
-
 let g:OmniSharp_selector_ui = 'ctrlp'
-
 let g:ale_linters = { 'cs': ['OmniSharp'] }
-
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'], 'cs': ['uncrustify'] }
+let g:ale_fix_on_save = 1
 let g:ale_set_loclist = 0
-
 let g:ale_set_quickfix = 1
-
 let g:ale_list_window_size = 5

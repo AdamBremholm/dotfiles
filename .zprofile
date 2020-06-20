@@ -4,9 +4,12 @@
 
 # If you don't plan on reverting to bash, you can remove the link in ~/.profile
 # to clean up.
-
+# ssh keyring load github ssh keys
+#eval `keychain --eval --agents ssh id_rsa`
 # Adds `~/.local/bin` to $PATH
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':')"
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 # Default programs:
 export EDITOR="vim"

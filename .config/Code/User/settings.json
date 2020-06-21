@@ -59,6 +59,15 @@
         {
             "before": [
                 "<leader>",
+                "b"
+            ],
+            "commands": [
+                "editor.debug.action.toggleBreakpoint",
+            ],
+        },
+        {
+            "before": [
+                "<leader>",
                 "c"
             ],
             "commands": [
@@ -151,13 +160,15 @@
     "explorer.confirmDelete": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "vscode-icons",
+    "editor.lineNumbers": "relative",
     "vsicons.dontShowNewVersionMessage": true,
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "workbench.colorCustomizations": {
-        "statusBar.background": "#B48EAD",
-        "statusBar.noFolderBackground": "#B48EAD",
-        "statusBar.debuggingBackground": "#B48EAD"
+        "statusBar.background": "#8FBCBB",
+        "statusBar.noFolderBackground": "#8FBCBB",
+        "statusBar.debuggingBackground": "#8FBCBB",
+        "statusBar.foreground": "#434C5E"
     },
 }

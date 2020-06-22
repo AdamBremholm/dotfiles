@@ -3,7 +3,7 @@
 # Use vim for vi if present.
 command -v vim >/dev/null && alias vi="vim" vimdiff="vim -d"
 
-#for XDG folders 
+#for XDG folders
 alias gpg2="gpg2 --homedir "$XDG_DATA_HOME"/gnupg"
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
 
@@ -34,3 +34,14 @@ alias \
 	p="sudo pacman" \
 	k="kubectl" \
 	z="zathura"
+
+# Get latest container ID
+alias dl="docker ps -l -q"
+# Get container process
+alias dps="docker ps"
+# Get process included stop container
+alias dpa="docker ps -a"
+# Get images
+alias di="docker images"
+# Get container IP
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"

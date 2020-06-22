@@ -74,12 +74,12 @@
         "command": "workbench.action.quickOpenSelectPrevious",
         "when": "inQuickOpen"
     },
-    // [Semicolon] = ö on Swedish keyboard
     {
-        "key": "ctrl+[Semicolon]",
-        "command": "workbench.action.terminal.new",
-        "when": "!terminalIsOpen"
+        "key": "ctrl+w",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "!editorTextFocus"
     },
+    // [Semicolon] = ö on Swedish keyboard
     {
         "key": "ctrl+[Semicolon]",
         "command": "workbench.action.terminal.new",
@@ -98,5 +98,25 @@
     {
         "key": "ctrl+[Quote]",
         "command": "workbench.action.closePanel"
+    },
+    {
+        "key": "ctrl+[Quote]",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": ", n",
+        "command": "csharpextensions.createClass",
+        "when": "explorerViewletFocus"
+    },
+    {
+        "key": ", i",
+        "command": "csharpextensions.createInterface",
+        "when": "explorerViewletFocus"
+    },
+    {
+        "key": ", f",
+        "command": "explorer.newFolder",
+        "when": "explorerViewletFocus"
     },
 ]

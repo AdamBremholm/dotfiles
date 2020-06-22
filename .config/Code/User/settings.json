@@ -132,16 +132,6 @@
             "commands": [
                 "workbench.action.quickOpen"
             ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "r",
-                "r"
-            ],
-            "commands": [
-                ":!dotnet run"
-            ]
         }
     ],
     "vim.visualModeKeyBindings": [
@@ -170,5 +160,5 @@
         "statusBar.noFolderBackground": "#8FBCBB",
         "statusBar.debuggingBackground": "#8FBCBB",
         "statusBar.foreground": "#434C5E"
-    },
+    }
 }

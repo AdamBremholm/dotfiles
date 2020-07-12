@@ -41,15 +41,6 @@
         {
             "before": [
                 "<leader>",
-                "w"
-            ],
-            "commands": [
-                "workbench.action.splitEditor"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
                 "t"
             ],
             "commands": [
@@ -64,6 +55,26 @@
             "commands": [
                 "editor.debug.action.toggleBreakpoint",
             ],
+        },
+        {
+            "before": [
+                "g",
+                "i"
+            ],
+            "commands": [
+                "editor.action.goToImplementation",
+            ],
+            "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+        },
+        {
+            "before": [
+                "<leader>",
+                "p"
+            ],
+            "commands": [
+                "editor.action.showDefinitionPreviewHover",
+            ],
+            "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
         },
         {
             "before": [
@@ -160,5 +171,12 @@
         "statusBar.noFolderBackground": "#8FBCBB",
         "statusBar.debuggingBackground": "#8FBCBB",
         "statusBar.foreground": "#434C5E"
-    }
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.autoSave": "afterDelay",
+    "editor.codeLens": false,
+    "terminal.integrated.fontFamily": "Fira Mono for Powerline",
+    "files.trimTrailingWhitespace": true,
+    "dotnet-test-explorer.testProjectPath": "**/*Test.csproj"
 }

@@ -1,5 +1,9 @@
 #/bin/sh
 
+if [ $UID -ne 0 ]; then
+    alias reboot='sudo reboot'
+fi
+
 # Use vim for vi if present.
 command -v vim >/dev/null && alias vi="vim" vimdiff="vim -d"
 
@@ -45,3 +49,11 @@ alias dpa="docker ps -a"
 alias di="docker images"
 # Get container IP
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+# shows open ports
+alias ports='netstat -tulanp'
+#readable mount
+alias mount='mount |column -t'
+#continue wget automatically
+alias wget='wget -c'
+
+alias szp="source ~/.zprofile"

@@ -28,7 +28,27 @@ bindkey -s '^o' 'lfcd\n'
 #run .xinitrc
 test -f "$HOME"/.xinitrc && . "$HOME"/.xinitrc
 
+#
+# Run 'nvm use' automatically every time there's 
+# a .nvmrc file in the directory. Also, revert to default 
+# version when entering a directory without .nvmrc
+#
+enter_directory() {
+if [[ $PWD == $PREV_PWD ]]; then
+    return
+fi
 
+PREV_PWD=$PWD
+if [[ -f ".nvmrc" ]]; then
+    nvm use
+    NVM_DIRTY=true
+elif [[ $NVM_DIRTY = true ]]; then
+    nvm use default
+    NVM_DIRTY=false
+fi
+}
+
+export PROMPT_COMMAND=enter_directory
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
 
@@ -96,7 +116,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting vi-mode ssh-agent)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting vi-mode ssh-agent nvm)
 
 
 # User configuration
@@ -129,5 +149,5 @@ ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
-
+source /usr/share/nvm/init-nvm.sh
 source $ZSH/oh-my-zsh.sh

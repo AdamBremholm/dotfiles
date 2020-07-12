@@ -3,6 +3,9 @@
 # zsh profile file. Runs on login. Environmental variables are set here.
 
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':')"
+export PATH="$PATH:/home/adam/.dotnet/tools"
+export PATH="$HOME/.node_modules/bin:$PATH"
+export npm_config_prefix=~/.node_modules
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 

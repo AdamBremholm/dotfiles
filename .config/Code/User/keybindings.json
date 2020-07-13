@@ -27,7 +27,7 @@
     {
         "key": ", t",
         "command": "workbench.action.toggleSidebarVisibility",
-        "when": "!editorTextFocus"
+        "when": "sideBarFocus && activeViewlet == 'workbench.view.explorer'"
     },
     {
         "key": "ctrl+h",

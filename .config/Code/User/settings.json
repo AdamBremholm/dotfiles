@@ -117,6 +117,15 @@
         {
             "before": [
                 "<leader>",
+                "n"
+            ],
+            "commands": [
+                "fileutils.newFile"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
                 "o",
                 "g"
             ],
@@ -178,5 +187,12 @@
     "editor.codeLens": false,
     "terminal.integrated.fontFamily": "Fira Mono for Powerline",
     "files.trimTrailingWhitespace": true,
-    "dotnet-test-explorer.testProjectPath": "**/*Test.csproj"
+    "dotnet-test-explorer.testProjectPath": "**/*Test.csproj",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.jsxSingleQuote": true,
+    "prettier.semi": false,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "none",
+    "tslint.exclude": null
 }

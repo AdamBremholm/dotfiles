@@ -1,5 +1,6 @@
 {
     "vim.easymotion": true,
+    "vim.replaceWithRegister": true,
     "vim.statusBarColorControl": true,
     "vim.statusBarColors.normal": [
         "#8FBCBB",
@@ -189,7 +190,6 @@
     "files.trimTrailingWhitespace": true,
     "dotnet-test-explorer.testProjectPath": "**/*Test.csproj",
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "prettier.jsxSingleQuote": true,
     "prettier.semi": false,
     "prettier.singleQuote": true,

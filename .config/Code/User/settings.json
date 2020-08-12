@@ -41,6 +41,30 @@
         },
         {
             "before": [
+                "n",
+            ],
+            "after": [
+                "n",
+                "z",
+                "z",
+                "z",
+                "v"
+            ]
+        },
+        {
+            "before": [
+                "N",
+            ],
+            "after": [
+                "N",
+                "z",
+                "z",
+                "z",
+                "v"
+            ]
+        },
+        {
+            "before": [
                 "<leader>",
                 "t"
             ],
@@ -194,5 +218,8 @@
     "prettier.semi": false,
     "prettier.singleQuote": true,
     "prettier.trailingComma": "none",
-    "tslint.exclude": null
+    "tslint.exclude": null,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

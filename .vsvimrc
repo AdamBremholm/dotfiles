@@ -9,6 +9,7 @@ set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not it begins with upper case
 set nocursorline                " Do not highlight cursor (speeds up highlighting)
 set relativenumber
+set clipboard=unnamed           "For windows copy paste outside VisualStudio
 
 nnoremap <c-d> <PageDown>
 nnoremap <c-u> <PageUp>

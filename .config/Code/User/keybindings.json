@@ -30,6 +30,11 @@
         "when": "sideBarFocus"
     },
     {
+        "key": ", r",
+        "command": "settings.cycle.lineNumber",
+        "when": "editorTextFocus"
+    },
+    {
         "key": "ctrl+h",
         "command": "list.collapse",
         "when": "listFocus && !inputFocus"

@@ -1,7 +1,7 @@
 {
     "vim.easymotion": true,
     "vim.replaceWithRegister": true,
-    "vim.statusBarColorControl": true,
+    "vim.statusBarColorControl": false,
     "vim.statusBarColors.normal": [
         "#8FBCBB",
         "#434C5E"
@@ -93,6 +93,16 @@
         },
         {
             "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.goToReferences",
+            ],
+            "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+        },
+        {
+            "before": [
                 "<leader>",
                 "p"
             ],
@@ -118,26 +128,6 @@
             "commands": [
                 "revealInExplorer",
             ],
-        },
-        {
-            "before": [
-                "<leader>",
-                "r",
-                "e"
-            ],
-            "commands": [
-                "editor.action.rename"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "r",
-                "f"
-            ],
-            "commands": [
-                "fileutils.renameFile"
-            ]
         },
         {
             "before": [
@@ -177,7 +167,7 @@
             "commands": [
                 "workbench.action.quickOpen"
             ]
-        }
+        },
     ],
     "vim.visualModeKeyBindings": [
         {
@@ -191,11 +181,40 @@
             ],
         }
     ],
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "explorer.confirmDelete": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "vscode-icons",
     "editor.lineNumbers": "relative",
+    "settings.cycle": [
+        {
+            "id": "lineNumber",
+            "overrideWorkspaceSettings": false,
+            "values": [
+                {
+                    "editor.lineNumbers": "on"
+                },
+                {
+                    "editor.lineNumbers": "relative"
+                }
+            ]
+        }
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "<Esc>",
+            ],
+            "commands": [
+                {
+                    "command": [
+                        "settings.cycle.lineNumber",
+                        "extension.vim_escape"
+                    ]
+                }
+            ]
+        }
+    ],
     "vsicons.dontShowNewVersionMessage": true,
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
@@ -208,18 +227,24 @@
     },
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "files.autoSave": "afterDelay",
+    "files.autoSave": "off",
     "editor.codeLens": false,
     "terminal.integrated.fontFamily": "Fira Mono for Powerline",
     "files.trimTrailingWhitespace": true,
     "dotnet-test-explorer.testProjectPath": "**/*Test.csproj",
     "editor.formatOnSave": true,
     "prettier.jsxSingleQuote": true,
-    "prettier.semi": false,
     "prettier.singleQuote": true,
     "prettier.trailingComma": "none",
     "tslint.exclude": null,
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 12,
+    "editor.mouseWheelZoom": true,
+    "typescript.updateImportsOnFileMove.enabled": "always"
 }

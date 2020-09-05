@@ -32,7 +32,7 @@
     {
         "key": ", r",
         "command": "settings.cycle.lineNumber",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
     },
     {
         "key": "ctrl+h",

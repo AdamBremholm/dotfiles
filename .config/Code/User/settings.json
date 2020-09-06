@@ -41,7 +41,7 @@
         },
         {
             "before": [
-                "n",
+                "n"
             ],
             "after": [
                 "n",
@@ -53,7 +53,7 @@
         },
         {
             "before": [
-                "N",
+                "N"
             ],
             "after": [
                 "N",
@@ -78,8 +78,8 @@
                 "b"
             ],
             "commands": [
-                "editor.debug.action.toggleBreakpoint",
-            ],
+                "editor.debug.action.toggleBreakpoint"
+            ]
         },
         {
             "before": [
@@ -87,7 +87,7 @@
                 "i"
             ],
             "commands": [
-                "editor.action.goToImplementation",
+                "editor.action.goToImplementation"
             ],
             "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
         },
@@ -97,7 +97,7 @@
                 "r"
             ],
             "commands": [
-                "editor.action.goToReferences",
+                "editor.action.goToReferences"
             ],
             "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
         },
@@ -107,7 +107,7 @@
                 "p"
             ],
             "commands": [
-                "editor.action.showDefinitionPreviewHover",
+                "editor.action.showDefinitionPreviewHover"
             ],
             "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
         },
@@ -117,8 +117,8 @@
                 "c"
             ],
             "commands": [
-                "editor.action.commentLine",
-            ],
+                "editor.action.commentLine"
+            ]
         },
         {
             "before": [
@@ -126,8 +126,8 @@
                 "f"
             ],
             "commands": [
-                "revealInExplorer",
-            ],
+                "revealInExplorer"
+            ]
         },
         {
             "before": [
@@ -167,7 +167,7 @@
             "commands": [
                 "workbench.action.quickOpen"
             ]
-        },
+        }
     ],
     "vim.visualModeKeyBindings": [
         {
@@ -178,7 +178,7 @@
             "commands": [
                 "editor.action.commentLine",
                 "extension.vim_escape"
-            ],
+            ]
         }
     ],
     "window.zoomLevel": 0,
@@ -196,21 +196,6 @@
                 },
                 {
                     "editor.lineNumbers": "relative"
-                }
-            ]
-        }
-    ],
-    "vim.insertModeKeyBindings": [
-        {
-            "before": [
-                "<Esc>",
-            ],
-            "commands": [
-                {
-                    "command": [
-                        "settings.cycle.lineNumber",
-                        "extension.vim_escape"
-                    ]
                 }
             ]
         }
@@ -236,7 +221,6 @@
     "prettier.jsxSingleQuote": true,
     "prettier.singleQuote": true,
     "prettier.trailingComma": "none",
-    "tslint.exclude": null,
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },

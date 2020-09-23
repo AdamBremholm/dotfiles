@@ -11,9 +11,7 @@ export PATH=$PATH:$GOPATH/bin
 
 # Default programs:
 export EDITOR="vim"
-export TERMINAL="yakuake"
-export BROWSER="chromium"
-export READER="zathura"
+export BROWSER="chrome"
 
 #XDG vars
 export XDG_CONFIG_HOME=$HOME/.config
@@ -37,8 +35,3 @@ export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 
 
-# :# Start graphical server on tty1 if not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! ps -e | grep -qw Xorg && exec startx
-
-setxkbmap -option 'caps:ctrl_modifier' # makes Caps another Ctrl
-xcape -e 'Caps_Lock=Escape' # Caps is Esc when pressed by itself

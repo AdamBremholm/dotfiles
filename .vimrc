@@ -49,15 +49,9 @@ set nocursorcolumn              " Do not highlight column (speeds up highlightin
 set nocursorline                " Do not highlight cursor (speeds up highlighting)
 set lazyredraw                  " Wait to redraw
 set relativenumber
+set visualbell                  "disalbe bell in vim"
+set clipboard=unnamedplus       " Win copy paste
 
-" Enable to copy to clipboard for operations like yank, delete, change and put
-" http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
-if has('unnamedplus')
-  set clipboard^=unnamed
-  set clipboard^=unnamedplus
-endif
-
-" This enables us to undo files even if you exit Vim.
 if has('persistent_undo')
   set undofile
   set undodir=~/.config/vim/tmp/undo//

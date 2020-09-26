@@ -1,6 +1,5 @@
 # autoload -U colors && colors
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-
 # History in cache directory:
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=10000
@@ -116,7 +115,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting vi-mode ssh-agent nvm)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting vi-mode ssh-agent)
 
 
 # User configuration
@@ -144,10 +143,25 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting vi-mode ssh-agent nvm)
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# WSL (Windows Subsystem for Linux) specific settings.
+if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then
+    # Adjustments for WSL's file / folder permission metadata.
+    if [ "$(umask)" = "0000" ]; then
+      umask 0022
+    fi
 
+    # Access local X-server with VcXsrv.
+    #   Requires: https://sourceforge.net/projects/vcxsrv/ (or alternative)
+    export DISPLAY=:0
+
+    # Configure the Docker CLI to use the Docker for Windows daemon.
+    #   Requires: https://docs.docker.com/docker-for-windows/install/
+    export DOCKER_HOST=tcp://localhost:2375
+fi
+
+hash -d h=/mnt/c/Users/adam
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
-source $HOME/.nvm/nvm.sh
 source $ZSH/oh-my-zsh.sh

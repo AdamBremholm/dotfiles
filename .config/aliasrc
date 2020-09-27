@@ -57,3 +57,4 @@ alias mount='mount |column -t'
 alias wget='wget -c'
 
 alias szp="source ~/.zprofile"
+alias szrc="source ${ZDOTDIR}/.zshrc"

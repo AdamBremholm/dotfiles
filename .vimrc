@@ -4,13 +4,14 @@ Plug 'OmniSharp/omnisharp-vim'
 Plug 'w0rp/ale'
 Plug 'embear/vim-uncrustify'
 Plug 'scrooloose/nerdtree'
-Plug 'fatih/molokai'
+Plug 'morhetz/gruvbox'
 Plug 'SirVer/ultisnips'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'yuttie/comfortable-motion.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 
 """"""""""""""""""""""
@@ -51,6 +52,7 @@ set lazyredraw                  " Wait to redraw
 set relativenumber
 set visualbell                  "disalbe bell in vim"
 set clipboard=unnamedplus       " Win copy paste
+set bg=dark
 
 if has('persistent_undo')
   set undofile
@@ -64,11 +66,8 @@ let g:NERDTreeWinSize = 40
 let NERDTreeIgnore=['bin$[[dir]]', 'obj$[[dir]]', '\.vs$[[dir]]', '\~$']
 
 " Colorscheme
+autocmd vimenter * colorscheme gruvbox
 syntax enable
-set t_Co=256
-let g:rehash256 = 1
-let g:molokai_original = 1
-colorscheme molokai
 
 :highlight ExtraWhitespace ctermbg=red guibg=red
 :match ExtraWhitespace /\s\+$/

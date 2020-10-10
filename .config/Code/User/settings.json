@@ -94,6 +94,26 @@
         {
             "before": [
                 "g",
+                "b"
+            ],
+            "commands": [
+                "workbench.action.navigateBack"
+            ],
+            "when": "canNavigateBack && editorTextFocus && !isInEmbeddedEditor"
+        },
+        {
+            "before": [
+                "g",
+                "f"
+            ],
+            "commands": [
+                "workbench.action.navigateForward"
+            ],
+            "when": "canNavigateForward && editorTextFocus && !isInEmbeddedEditor"
+        },
+        {
+            "before": [
+                "g",
                 "r"
             ],
             "commands": [
@@ -167,6 +187,15 @@
             "commands": [
                 "workbench.action.quickOpen"
             ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "r"
+            ],
+            "commands": [
+                "settings.cycle.lineNumber"
+            ]
         }
     ],
     "vim.visualModeKeyBindings": [
@@ -230,5 +259,10 @@
     "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 12,
     "editor.mouseWheelZoom": true,
-    "typescript.updateImportsOnFileMove.enabled": "always"
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "vim.sneak": true,
+    "vim.sneakUseIgnorecaseAndSmartcase": true,
+    "git.autofetch": true,
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
 }

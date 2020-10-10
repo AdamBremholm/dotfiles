@@ -11,6 +11,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'yuttie/comfortable-motion.vim'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/vim-gist'
 call plug#end()
 
 """"""""""""""""""""""

@@ -2,7 +2,6 @@ call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'w0rp/ale'
-Plug 'embear/vim-uncrustify'
 Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'SirVer/ultisnips'
@@ -12,6 +11,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'mattn/vim-gist'
+Plug 'mattn/webapi-vim'
 call plug#end()
 
 """"""""""""""""""""""

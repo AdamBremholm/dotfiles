@@ -20,6 +20,8 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
+dnsfix () { /mnt/c/Windows/system32/ipconfig.exe /all | grep --color=auto "DNS Servers" | cut -d ":" -f 2 | grep --color=auto -e '^ [0-9]' | sed 's/^/nameserver/' | sudo tee /etc/resolv.conf > /dev/null }
+
 
 #load aliases
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"

@@ -7,33 +7,25 @@ SAVEHIST=10000
 
 setopt auto_cd
 
-
-# Use lf to switch directories and bind it to ctrl-o
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-    fi
-}
-bindkey -s '^o' 'lfcd\n'
-
-dnsfix () { /mnt/c/Windows/system32/ipconfig.exe /all | grep --color=auto "DNS Servers" | cut -d ":" -f 2 | grep --color=auto -e '^ [0-9]' | sed 's/^/nameserver/' | sudo tee /etc/resolv.conf > /dev/null }
+#fix for corporate vpn
+dnsfix () { /c/Windows/system32/ipconfig.exe /all | grep --color=auto "DNS Servers" | cut -d ":" -f 2 | grep --color=auto -e '^ [0-9]' | sed 's/^/nameserver/' | sudo tee /etc/resolv.conf > /dev/null }
 
 
 #load aliases
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
-
-#run .xinitrc
-test -f "$HOME"/.xinitrc && . "$HOME"/.xinitrc
 
 #
 # Run 'nvm use' automatically every time there's 
 # a .nvmrc file in the directory. Also, revert to default 
 # version when entering a directory without .nvmrc
 #
+
+#autostart tmux
+if command -v tmux >/dev/null 2>&1; then
+    # if not inside a tmux session, and if no session is started, start a new session
+    [ -z "${TMUX}" ] && (tmux attach >/dev/null 2>&1 || tmux)
+fi
+
 enter_directory() {
 if [[ $PWD == $PREV_PWD ]]; then
     return

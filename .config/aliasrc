@@ -5,6 +5,7 @@ if [ $UID -ne 0 ]; then
 fi
 
 # Use vim for vi if present.
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
 command -v vim >/dev/null && alias vi="vim" vimdiff="vim -d"
 
 #for XDG folders

@@ -50,3 +50,14 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
 lua require'nvim-treesitter.configs'.setup {highlight = {enable = true}}
+
+
+"lsp bindings
+nnoremap gd :lua vim.lsp.buf.definition()<CR>
+nnoremap gi :lua vim.lsp.buf.implementation()<CR>
+nnoremap gsh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap gr :lua vim.lsp.buf.references()<CR>
+nnoremap <F2> :lua vim.lsp.buf.rename()<CR>
+nnoremap gh :lua vim.lsp.buf.hover()<CR>
+nnoremap gca :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>gda :lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>

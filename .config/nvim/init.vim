@@ -63,7 +63,17 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_enable_auto_hover = 0
 
 lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.omnisharp.setup { on_attach=require'completion'.on_attach }
+lua << EOF
+require'lspconfig'.omnisharp.setup { 
+on_attach=require'completion'.on_attach,
+ handlers = { 
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    })
+    }
+}
+EOF
 
 lua require'nvim-treesitter.configs'.setup {highlight = {enable = true}}
 

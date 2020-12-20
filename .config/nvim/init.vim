@@ -22,7 +22,6 @@ set scrolloff=8
 set noshowmode
 set clipboard+=unnamedplus
 set cmdheight=2
-set formatprg=prettier
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -37,6 +36,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 "other plugins
 Plug 'gruvbox-community/gruvbox'
+Plug 'szw/vim-maximizer'
 
 call plug#end()
 
@@ -60,9 +60,10 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 set completeopt=menuone,noinsert,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_enable_auto_hover = 0
 
 lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.omnisharp.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.omnisharp.setup { on_attach=require'completion'.on_attach }
 
 lua require'nvim-treesitter.configs'.setup {highlight = {enable = true}}
 
@@ -76,13 +77,17 @@ nnoremap gr :lua vim.lsp.buf.references()<CR>
 nnoremap <F2> :lua vim.lsp.buf.rename()<CR>
 nnoremap gh :lua vim.lsp.buf.hover()<CR>
 nnoremap gca :lua vim.lsp.buf.code_action()<CR>
-nnoremap <leader>gda :lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
-nnoremap <leader>fs :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>h.q
+nnoremap <leader>gda :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <leader>fs :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>
 
 "other remaps
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap n nzzzv
 nnoremap N Nzzzv
+nnoremap <leader>m :MaximizerToggle!<CR>
+
+"terminal easy close"
+:tnoremap <Esc> <C-\><C-n>
 
 " Act like D and C
 nnoremap Y y$

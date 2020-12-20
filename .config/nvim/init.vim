@@ -69,6 +69,7 @@ lua require'nvim-treesitter.configs'.setup {highlight = {enable = true}}
 
 "lsp bindings
 nnoremap gd :lua vim.lsp.buf.definition()<CR>
+nnoremap gf :lua vim.lsp.buf.formatting()<CR>
 nnoremap gi :lua vim.lsp.buf.implementation()<CR>
 nnoremap gsh :lua vim.lsp.buf.signature_help()<CR>
 nnoremap gr :lua vim.lsp.buf.references()<CR>
@@ -76,9 +77,24 @@ nnoremap <F2> :lua vim.lsp.buf.rename()<CR>
 nnoremap gh :lua vim.lsp.buf.hover()<CR>
 nnoremap gca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>gda :lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <leader>fs :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>h.q
 
 "other remaps
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Act like D and C
+nnoremap Y y$
+
+" Auto enclosing brackets
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
 " greatest remap ever
 vnoremap <leader>p "_dP

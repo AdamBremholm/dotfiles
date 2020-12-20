@@ -10,7 +10,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # Default programs:
-export EDITOR="vim"
+export EDITORn="nvim"
 export TERMINAL="yakuake"
 export BROWSER="chromium"
 export READER="zathura"

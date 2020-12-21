@@ -34,9 +34,15 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
 
+"telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 "other plugins
 Plug 'gruvbox-community/gruvbox'
 Plug 'szw/vim-maximizer'
+Plug 'vuciv/vim-bujo'
 
 call plug#end()
 
@@ -63,6 +69,8 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_enable_auto_hover = 0
 
 lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
+
+"disable virtual text for diagnostics in c#
 lua << EOF
 require'lspconfig'.omnisharp.setup { 
 on_attach=require'completion'.on_attach,
@@ -75,8 +83,11 @@ on_attach=require'completion'.on_attach,
 }
 EOF
 
+lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach}
+lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach}
 lua require'nvim-treesitter.configs'.setup {highlight = {enable = true}}
 
+lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
 
 "lsp bindings
 nnoremap gd :lua vim.lsp.buf.definition()<CR>
@@ -90,11 +101,22 @@ nnoremap gca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>gda :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nnoremap <leader>fs :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>
 
+"telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 "other remaps
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap <leader>m :MaximizerToggle!<CR>
+
+" vim TODO
+nmap <Leader>tu <Plug>BujoChecknormal
+nmap <Leader>th <Plug>BujoAddnormal
+let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 
 "terminal easy close"
 :tnoremap <Esc> <C-\><C-n>

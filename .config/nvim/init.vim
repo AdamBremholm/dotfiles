@@ -22,6 +22,7 @@ set scrolloff=8
 set noshowmode
 set clipboard+=unnamedplus
 set cmdheight=2
+set statusline+=%F
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -34,15 +35,25 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
 
+
 "telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-"other plugins
+"other
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
+Plug 'tpope/vim-fugitive'
+
+Plug 'jremmen/vim-ripgrep'
 Plug 'gruvbox-community/gruvbox'
 Plug 'szw/vim-maximizer'
 Plug 'vuciv/vim-bujo'
+
+"visual"
+ 
 
 call plug#end()
 
@@ -102,10 +113,13 @@ nnoremap <leader>gda :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nnoremap <leader>fs :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>
 
 "telescope
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+"git
+nnoremap <leader>gb :GBranches<CR>
 
 "other remaps
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>

@@ -26,8 +26,6 @@ bindkey -s '^o' 'lfcd\n'
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 #run .xinitrc
-test -f "$HOME"/.xinitrc && . "$HOME"/.xinitrc
-
 #
 # Run 'nvm use' automatically every time there's 
 # a .nvmrc file in the directory. Also, revert to default 

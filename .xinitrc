@@ -39,6 +39,7 @@ fi
 [ -f /etc/xprofile ] && . /etc/xprofile
 [ -f ~/.xprofile ] && . ~/.xprofile
 
+xrandr --output DP-0 --auto --output DP-2 --auto --right-of DP-0
 
 session=${1:-kde}
 

@@ -22,6 +22,7 @@ set scrolloff=8
 set noshowmode
 set clipboard+=unnamedplus
 set cmdheight=2
+set signcolumn=yes
 set statusline+=%F
 
 set colorcolumn=80
@@ -46,6 +47,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
 
 Plug 'jremmen/vim-ripgrep'
 Plug 'gruvbox-community/gruvbox'
@@ -121,12 +123,6 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 "git
 nnoremap <leader>gb :GBranches<CR>
 
-"other remaps
-nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap <leader>m :MaximizerToggle!<CR>
-
 " vim TODO
 nmap <Leader>tu <Plug>BujoChecknormal
 nmap <Leader>th <Plug>BujoAddnormal
@@ -134,9 +130,6 @@ let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 
 "terminal easy close"
 :tnoremap <Esc> <C-\><C-n>
-
-" Act like D and C
-nnoremap Y y$
 
 " Auto enclosing brackets
 inoremap " ""<left>
@@ -147,5 +140,16 @@ inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
-" greatest remap ever
+"other remaps
+nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
+nnoremap <leader>m :MaximizerToggle!<CR>
+
+nnoremap n nzzzv
+nnoremap N Nzzzv
 vnoremap <leader>p "_dP
+vnoremap <leader>d "_d
+nnoremap <leader>d "_d
+vnoremap <leader>y "+y
+nnoremap <leader>y "+y
+nnoremap <leader>Y gg"+yG
+nnoremap Y y$

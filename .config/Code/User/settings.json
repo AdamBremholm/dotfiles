@@ -20,11 +20,12 @@
     "vim.useSystemClipboard": true,
     "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
-    "vim.leader": ",",
+    "vim.leader": " ",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
-                "<space>"
+                "<leader>",
+                "s"
             ],
             "commands": [
                 "workbench.action.files.save"

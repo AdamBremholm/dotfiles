@@ -35,7 +35,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
-
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 
 "telescope
 Plug 'nvim-lua/popup.nvim'
@@ -48,6 +49,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-surround'
 
 Plug 'jremmen/vim-ripgrep'
 Plug 'gruvbox-community/gruvbox'
@@ -85,7 +87,10 @@ lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
 
 "disable virtual text for diagnostics in c#
 lua << EOF
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/home/adam/.local/share/vim-lsp-settings/servers/omnisharp-lsp/omnisharp-lsp"
 require'lspconfig'.omnisharp.setup { 
+cmd = {omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)};
 on_attach=require'completion'.on_attach,
  handlers = { 
     ["textDocument/publishDiagnostics"] = vim.lsp.with(

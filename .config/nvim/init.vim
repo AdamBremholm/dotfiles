@@ -34,9 +34,7 @@ call plug#begin('~/.vim/plugged')
 "neovim lsp plugins
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 "telescope
 Plug 'nvim-lua/popup.nvim'
@@ -57,7 +55,7 @@ Plug 'szw/vim-maximizer'
 Plug 'vuciv/vim-bujo'
 
 "visual"
- 
+
 
 call plug#end()
 
@@ -83,25 +81,30 @@ set completeopt=menuone,noinsert,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_enable_auto_hover = 0
 
-lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
 
 "disable virtual text for diagnostics in c#
 lua << EOF
 local pid = vim.fn.getpid()
 local omnisharp_bin = "/home/adam/.local/share/vim-lsp-settings/servers/omnisharp-lsp/omnisharp-lsp"
-require'lspconfig'.omnisharp.setup { 
-cmd = {omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)};
-on_attach=require'completion'.on_attach,
- handlers = { 
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+require'lspconfig'.omnisharp.setup {
+    cmd = {omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)},
+    on_attach=require'completion'.on_attach,
+    handlers = { ["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false
+    virtual_text = {
+      severity_limit = "Warning",
+      },
+    signs = {
+      severity_limit = "Warning",
+      },
     })
     }
 }
 EOF
 
-lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach}
+lua require'lspconfig'.tsserver.setup {on_attach=require'completion'.on_attach}
+
 lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach}
 lua require'nvim-treesitter.configs'.setup {highlight = {enable = true}}
 
@@ -136,15 +139,6 @@ let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 "terminal easy close"
 :tnoremap <Esc> <C-\><C-n>
 
-" Auto enclosing brackets
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-
 "other remaps
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <leader>m :MaximizerToggle!<CR>
@@ -158,3 +152,21 @@ vnoremap <leader>y "+y
 nnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
 nnoremap Y y$
+
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup WHITE_SPACE_BE_GONE
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
+augroup END
+
+augroup TOGGLE_RELATIVE_IN_INSERT
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+augroup END
+

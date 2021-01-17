@@ -1,6 +1,7 @@
 syntax on
 filetype plugin indent on
 
+set exrc
 set guicursor=
 set relativenumber
 set nohlsearch
@@ -48,6 +49,7 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-surround'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 Plug 'jremmen/vim-ripgrep'
 Plug 'gruvbox-community/gruvbox'
@@ -66,9 +68,13 @@ set background=dark
 
 let mapleader = " "
 
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
 
 "native file explorer
-let g:netrw_browse_split = 2
+let g:netrw_browse_split = 4
+let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 let g:netrw_localrmdir='rm -r'

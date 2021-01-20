@@ -1,5 +1,3 @@
-# autoload -U colors && colors
-# PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 # History in cache directory:
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=10000
@@ -7,16 +5,16 @@ SAVEHIST=10000
 
 setopt auto_cd
 
-#fix for corporate vpn
-dnsfix () { /c/Windows/system32/ipconfig.exe /all | grep --color=auto "DNS Servers" | cut -d ":" -f 2 | grep --color=auto -e '^ [0-9]' | sed 's/^/nameserver/' | sudo tee /etc/resolv.conf > /dev/null }
+#fix for corporate vpn only wsl1
+#dnsfix () { /c/Windows/system32/ipconfig.exe /all | grep --color=auto "DNS Servers" | cut -d ":" -f 2 | grep --color=auto -e '^ [0-9]' | sed 's/^/nameserver/' | sudo tee /etc/resolv.conf > /dev/null }
 
 
 #load aliases
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 #
-# Run 'nvm use' automatically every time there's 
-# a .nvmrc file in the directory. Also, revert to default 
+# Run 'nvm use' automatically every time there's
+# a .nvmrc file in the directory. Also, revert to default
 # version when entering a directory without .nvmrc
 #
 
@@ -125,32 +123,14 @@ export FZF_BASE=/usr/bin/fzf
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting vi-mode ssh-agent fzf)
 
 
-# User configuration
+#WSL 2 specific settings.
+if grep -q "microsoft" /proc/version &>/dev/null; then
 
-# export MANPATH="/usr/local/man:$MANPATH"
+   export DISPLAY="$(/sbin/ip route | awk '/default/ { print $3 }'):0"
+    # Allows your gpg passphrase prompt to spawn (useful for signing commits).
+   export GPG_TTY=$(tty)
+fi
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-# WSL (Windows Subsystem for Linux) specific settings.
 if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then
     # Adjustments for WSL's file / folder permission metadata.
     if [ "$(umask)" = "0000" ]; then
@@ -160,15 +140,15 @@ if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then
     # Access local X-server with VcXsrv.
     #   Requires: https://sourceforge.net/projects/vcxsrv/ (or alternative)
     export DISPLAY=:0
-
-    # Configure the Docker CLI to use the Docker for Windows daemon.
-    #   Requires: https://docs.docker.com/docker-for-windows/install/
-    export DOCKER_HOST=tcp://localhost:2375
 fi
 
-hash -d h=/mnt/c/Users/adam
+
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
 source $ZSH/oh-my-zsh.sh
+
+export DISPLAY=localhost:0.0
+export HOST="wsl2" 

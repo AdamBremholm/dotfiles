@@ -4,6 +4,9 @@ if [ $UID -ne 0 ]; then
     alias reboot='sudo reboot'
 fi
 
+# Use nvim for vim if present
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+
 # Use vim for vi if present.
 command -v vim >/dev/null && alias vi="vim" vimdiff="vim -d"
 
@@ -58,3 +61,8 @@ alias wget='wget -c'
 
 alias szp="source ~/.zprofile"
 alias szrc="source ${ZDOTDIR}/.zshrc"
+
+#Thiss is specific to WSL 2. If the WSL 2 VM goes rogue and decides not to free
+# up memory, this command will free your memory after about 20-30 seconds.
+#   Details: https://github.com/microsoft/WSL/issues/4166#issuecomment-628493643
+alias drop_cache="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared'\""

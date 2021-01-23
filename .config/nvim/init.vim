@@ -89,11 +89,17 @@ let g:completion_enable_auto_hover = 0
 
 lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
 
+lua << EOF
+vim.lsp.set_log_level("debug")
+EOF
+
 "disable virtual text for diagnostics in c#
 lua << EOF
+local lspconfig = require'lspconfig'
 local pid = vim.fn.getpid()
 local omnisharp_bin = "/home/adam/.local/share/vim-lsp-settings/servers/omnisharp-lsp/omnisharp-lsp"
-require'lspconfig'.omnisharp.setup {
+lspconfig.omnisharp.setup {
+    root_dir = lspconfig.util.root_pattern('.git'),
     cmd = {omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)},
     on_attach=require'completion'.on_attach,
     handlers = { ["textDocument/publishDiagnostics"] = vim.lsp.with(

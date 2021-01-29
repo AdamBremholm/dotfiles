@@ -61,7 +61,7 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-surround'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(1) } }
 
 Plug 'jremmen/vim-ripgrep'
 Plug 'gruvbox-community/gruvbox'
@@ -107,7 +107,7 @@ local lspconfig = require'lspconfig'
 local pid = vim.fn.getpid()
 local omnisharp_bin = "/home/adam/.local/share/vim-lsp-settings/servers/omnisharp-lsp/omnisharp-lsp"
 lspconfig.omnisharp.setup {
-    root_dir = lspconfig.util.root_pattern('.git'),
+    root_dir = lspconfig.util.root_pattern('.git', '.azure-pipelines.yml'),
     cmd = {omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)},
     on_attach=require'completion'.on_attach,
     handlers = { ["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -158,6 +158,12 @@ let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 
 "terminal easy close"
 :tnoremap <Esc> <C-\><C-n>
+
+" Move 1 more lines up or down in normal and visual selection modes.
+nnoremap K :m .-2<CR>==
+nnoremap J :m .+1<CR>==
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
 
 "other remaps
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>

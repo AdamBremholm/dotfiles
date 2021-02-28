@@ -10,8 +10,11 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # Default programs:
-export EDITOR="vim"
-export BROWSER="chrome"
+export EDITOR="nvim"
+export TERMINAL="termite"
+export BROWSER="brave"
+export READER="zathura"
+>>>>>>> b4b47247c759e0c61d09dffa20125fb4d74a7bf6
 
 #XDG vars
 export XDG_CONFIG_HOME=$HOME/.config
@@ -33,5 +36,3 @@ export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-
-

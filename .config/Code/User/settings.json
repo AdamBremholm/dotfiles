@@ -1,7 +1,7 @@
 {
     "vim.easymotion": true,
     "vim.replaceWithRegister": true,
-    "vim.statusBarColorControl": true,
+    "vim.statusBarColorControl": false,
     "vim.statusBarColors.normal": [
         "#8FBCBB",
         "#434C5E"
@@ -20,11 +20,12 @@
     "vim.useSystemClipboard": true,
     "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
-    "vim.leader": ",",
+    "vim.leader": " ",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
-                "<space>"
+                "<leader>",
+                "s"
             ],
             "commands": [
                 "workbench.action.files.save"
@@ -41,7 +42,7 @@
         },
         {
             "before": [
-                "n",
+                "n"
             ],
             "after": [
                 "n",
@@ -53,7 +54,7 @@
         },
         {
             "before": [
-                "N",
+                "N"
             ],
             "after": [
                 "N",
@@ -78,8 +79,8 @@
                 "b"
             ],
             "commands": [
-                "editor.debug.action.toggleBreakpoint",
-            ],
+                "editor.debug.action.toggleBreakpoint"
+            ]
         },
         {
             "before": [
@@ -87,7 +88,37 @@
                 "i"
             ],
             "commands": [
-                "editor.action.goToImplementation",
+                "editor.action.goToImplementation"
+            ],
+            "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+        },
+        {
+            "before": [
+                "g",
+                "b"
+            ],
+            "commands": [
+                "workbench.action.navigateBack"
+            ],
+            "when": "canNavigateBack && editorTextFocus && !isInEmbeddedEditor"
+        },
+        {
+            "before": [
+                "g",
+                "f"
+            ],
+            "commands": [
+                "workbench.action.navigateForward"
+            ],
+            "when": "canNavigateForward && editorTextFocus && !isInEmbeddedEditor"
+        },
+        {
+            "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.goToReferences"
             ],
             "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
         },
@@ -97,7 +128,7 @@
                 "p"
             ],
             "commands": [
-                "editor.action.showDefinitionPreviewHover",
+                "editor.action.showDefinitionPreviewHover"
             ],
             "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
         },
@@ -107,36 +138,16 @@
                 "c"
             ],
             "commands": [
-                "editor.action.commentLine",
-            ],
-        },
-        {
-            "before": [
-                "<leader>",
-                "f"
-            ],
-            "commands": [
-                "revealInExplorer",
-            ],
-        },
-        {
-            "before": [
-                "<leader>",
-                "r",
-                "e"
-            ],
-            "commands": [
-                "editor.action.rename"
+                "editor.action.commentLine"
             ]
         },
         {
             "before": [
                 "<leader>",
-                "r",
                 "f"
             ],
             "commands": [
-                "fileutils.renameFile"
+                "revealInExplorer"
             ]
         },
         {
@@ -177,6 +188,15 @@
             "commands": [
                 "workbench.action.quickOpen"
             ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "r"
+            ],
+            "commands": [
+                "settings.cycle.lineNumber"
+            ]
         }
     ],
     "vim.visualModeKeyBindings": [
@@ -188,14 +208,28 @@
             "commands": [
                 "editor.action.commentLine",
                 "extension.vim_escape"
-            ],
+            ]
         }
     ],
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 2,
     "explorer.confirmDelete": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "vscode-icons",
     "editor.lineNumbers": "relative",
+    "settings.cycle": [
+        {
+            "id": "lineNumber",
+            "overrideWorkspaceSettings": false,
+            "values": [
+                {
+                    "editor.lineNumbers": "on"
+                },
+                {
+                    "editor.lineNumbers": "relative"
+                }
+            ]
+        }
+    ],
     "vsicons.dontShowNewVersionMessage": true,
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
@@ -208,18 +242,29 @@
     },
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "files.autoSave": "afterDelay",
+    "files.autoSave": "off",
     "editor.codeLens": false,
     "terminal.integrated.fontFamily": "Fira Mono for Powerline",
     "files.trimTrailingWhitespace": true,
     "dotnet-test-explorer.testProjectPath": "**/*Test.csproj",
     "editor.formatOnSave": true,
     "prettier.jsxSingleQuote": true,
-    "prettier.semi": false,
     "prettier.singleQuote": true,
     "prettier.trailingComma": "none",
-    "tslint.exclude": null,
     "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 12,
+    "editor.mouseWheelZoom": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "vim.sneak": true,
+    "vim.sneakUseIgnorecaseAndSmartcase": true,
+    "git.autofetch": true,
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "git.confirmSync": false
 }

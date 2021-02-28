@@ -30,6 +30,11 @@
         "when": "sideBarFocus"
     },
     {
+        "key": ", r",
+        "command": "settings.cycle.lineNumber",
+        "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    },
+    {
         "key": "ctrl+h",
         "command": "list.collapse",
         "when": "listFocus && !inputFocus"
@@ -79,7 +84,6 @@
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "!editorTextFocus"
     },
-    // [Semicolon] = ö on Swedish keyboard
     {
         "key": "ctrl+[Semicolon]",
         "command": "workbench.action.terminal.new",
@@ -94,7 +98,6 @@
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "terminalFocus"
     },
-    // [Quote] = ä on Swedish keyboard
     {
         "key": "ctrl+[Quote]",
         "command": "workbench.action.closePanel"
@@ -123,5 +126,5 @@
         "key": "[Comma] n",
         "command": "fileutils.newFile",
         "when": "explorerViewletFocus"
-    },
+    }
 ]

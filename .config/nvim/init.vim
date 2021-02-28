@@ -37,7 +37,6 @@ let g:clipboard = {
           \ }
 
 set cmdheight=2
->>>>>>> b4b47247c759e0c61d09dffa20125fb4d74a7bf6
 set signcolumn=yes
 set statusline+=%F
 
@@ -70,7 +69,6 @@ Plug 'szw/vim-maximizer'
 Plug 'vuciv/vim-bujo'
 
 "visual"
-
 
 call plug#end()
 
@@ -129,7 +127,6 @@ lspconfig.omnisharp.setup {
 EOF
 
 lua require'lspconfig'.tsserver.setup {on_attach=require'completion'.on_attach}
-
 lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach}
 lua require'nvim-treesitter.configs'.setup {highlight = {enable = true}}
 

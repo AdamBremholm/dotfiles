@@ -54,7 +54,7 @@ export ZSH=$HOME/.oh-my-zsh
 #run .xinitrc
 #test -f "$HOME"/.xinitrc && . "$HOME"/.xinitrc
 
-ZSH=/usr/share/oh-my-zsh/
+ZSH=~/.oh-my-zsh
 
 ZSH_THEME="agnoster"
 

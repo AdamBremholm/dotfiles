@@ -56,7 +56,8 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH=~/.oh-my-zsh
 
-ZSH_THEME="agnoster"
+ZSH_THEME="gruvbox"
+SOLARIZED_THEME="dark"
 
 
 # Uncomment the following line to automatically update without prompting.
@@ -146,4 +147,4 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 export DISPLAY=localhost:0.0
-export HOST="wsl2" 
+export HOST="wsl2"

@@ -36,6 +36,7 @@ let g:clipboard = {
           \   'cache_enabled': 0,
           \ }
 
+set cmdheight=2
 set signcolumn=yes
 set statusline+=%F
 
@@ -62,14 +63,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-surround'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(1) } }
-
 Plug 'jremmen/vim-ripgrep'
 Plug 'gruvbox-community/gruvbox'
 Plug 'szw/vim-maximizer'
 Plug 'vuciv/vim-bujo'
 
 "visual"
-
 
 call plug#end()
 
@@ -101,13 +100,17 @@ let g:completion_enable_auto_hover = 0
 
 lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
 
+lua << EOF
+vim.lsp.set_log_level("debug")
+EOF
+
 "disable virtual text for diagnostics in c#
 lua << EOF
 local lspconfig = require'lspconfig'
 local pid = vim.fn.getpid()
 local omnisharp_bin = "/home/adam/.local/share/vim-lsp-settings/servers/omnisharp-lsp/omnisharp-lsp"
 lspconfig.omnisharp.setup {
-    root_dir = lspconfig.util.root_pattern('.git', '.azure-pipelines.yml'),
+    root_dir = lspconfig.util.root_pattern('.git'),
     cmd = {omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)},
     on_attach=require'completion'.on_attach,
     handlers = { ["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -137,6 +140,7 @@ require'lspconfig'.jsonls.setup {
 }
 EOF
 
+lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach}
 lua require'nvim-treesitter.configs'.setup {highlight = {enable = true}}
 
 lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})

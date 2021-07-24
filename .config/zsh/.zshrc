@@ -151,4 +151,4 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 export DISPLAY=localhost:0.0
-export HOST="wsl2" 
+export HOST="wsl2"

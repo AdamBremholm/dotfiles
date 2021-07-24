@@ -3,20 +3,76 @@ set autoindent                  " Enabile Autoindent
 set backspace=indent,eol,start  " Makes backspace key more powerful.
 set incsearch                   " Shows the match while typing
 set hlsearch                    " Highlight found searches
-set number                      " Show line numbers
 set showcmd                     " Show me what I'm typing
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not it begins with upper case
 set nocursorline                " Do not highlight cursor (speeds up highlighting)
-set relativenumber
 set clipboard=unnamed           "For windows copy paste outside VisualStudio
+let mapleader = " "
 
 nnoremap <c-d> <PageDown>
 nnoremap <c-u> <PageUp>
 
+map <leader>c :vsc Edit.ToggleLineComment<CR>
 nnoremap n nzzzv
 nnoremap N Nzzzv
-
 nnoremap Y y$
+map <leader>t :vsc RunTestsInClass<CR>
 
-nnoremap <Space> :vsc Edit.FormatDocument
+map <leader>qk :vsc Tools.CustomizeKeyboard<CR>
+map <leader>b :vsc Build.BuildSolution<CR>
+
+map <Space> :vsc Edit.FormatDocument<CR>
+map gd :vsc Edit.GoToDefinition<CR>
+map gb :vsc View.NavigateBackward<CR>
+map gf :vsc View.NavigateForward<CR>
+map gi :vsc Edit.GoToImplementation<CR>
+map gh :vsc Edit.QuickInfo<CR>
+map gr :vsc Edit.FindAllReferences<CR>
+map zl :so ~/.vsvimrc<CR>
+map <C-ä> :vsc Window.Close<CR>
+
+
+" Move 1 more lines up or down in normal and visual selection modes.
+nnoremap K :m .-2<CR>==
+nnoremap J :m .+1<CR>==
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+
+" Surround simulating bindings
+nnoremap s) ciw(<C-r>")<Esc>
+nnoremap s] ciw[<C-r>"]<Esc>
+nnoremap s} ciw{<C-r>"}<Esc>
+nnoremap s> ciw<lt><C-r>"><Esc>
+nnoremap s" ciw"<C-r>""<Esc>
+nnoremap s' ciw'<C-r>"'<Esc>
+nnoremap sw) ciW(<C-r>")<Esc>
+nnoremap sw] ciW[<C-r>"]<Esc>
+nnoremap sw} ciW{<C-r>"}<Esc>
+nnoremap sw> ciW<lt><C-r>"><Esc>
+nnoremap sw" ciW"<C-r>""<Esc>
+nnoremap sw' ciW'<C-r>"'<Esc>
+
+" Surround delete bindings
+nnoremap ds) vi(dvhp
+nnoremap ds] vi[dvhp
+nnoremap ds} vi{dvhp
+nnoremap ds> vi<dvhp
+nnoremap ds" vi"dvhp
+nnoremap ds' vi'dvhp
+
+" Surround change bindings
+nnoremap cs"' vi"oh<Esc>msvi"l<Esc>cl'<Esc>`scl'<Esc>
+nnoremap cs'" vi'oh<Esc>msvi'l<Esc>cl"<Esc>`scl"<Esc>
+
+" Surround visual selected text
+vnoremap S" c"<C-r>""<Esc>
+vnoremap S' c"<C-r>"'<Esc>
+vnoremap S) c(<C-r>")<Esc>
+vnoremap S] c[<C-r>"]<Esc>
+vnoremap S} c{<C-r>"}<Esc>
+vnoremap S> c<lt><C-r>"><Esc>
+vnoremap S* c/*<C-r>"*/<Esc>
+"vnoremap St c<lt>div><CR><C-r>"<Esc>
+" Surround in div tag and edit tag
+vnoremap St c<lt>div><CR><C-r>"<Esc>`<lt>lcw

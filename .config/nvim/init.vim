@@ -125,7 +125,18 @@ EOF
 
 lua require'lspconfig'.tsserver.setup {on_attach=require'completion'.on_attach}
 
-lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach}
+lua << EOF
+require'lspconfig'.jsonls.setup {
+    commands = {
+      Format = {
+        function()
+          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+        end
+      }
+    }
+}
+EOF
+
 lua require'nvim-treesitter.configs'.setup {highlight = {enable = true}}
 
 lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
@@ -133,6 +144,7 @@ lua require('telescope').setup({defaults = {file_sorter = require('telescope.sor
 "lsp bindings
 nnoremap gd :lua vim.lsp.buf.definition()<CR>
 nnoremap gf :lua vim.lsp.buf.formatting()<CR>
+nnoremap <leader>rf :lua vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})<CR>
 nnoremap gi :lua vim.lsp.buf.implementation()<CR>
 nnoremap gsh :lua vim.lsp.buf.signature_help()<CR>
 nnoremap gr :lua vim.lsp.buf.references()<CR>
